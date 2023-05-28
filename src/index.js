@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import Home from "./routes/home";
+import Add from './routes/add';
 import Manage from './routes/manage';
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
@@ -22,6 +23,10 @@ const router = createRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/add",
+    element: <Add />,
   },
   {
     path: "manage/:activityId",

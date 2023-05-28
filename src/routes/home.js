@@ -74,10 +74,9 @@ function App() {
 
               // row.pastDue = calculateRemainingTime(resolvedLastEvent[0].timestamp, row.cadence)
               row.pastDue = calculatePastDueMs(resolvedLastEvent[0].timestamp, row.cadence)
-
             }
             return row
-          }).sort( (a,b) => a.pastDue - b.pastDue )
+          }).sort( (a, b) => b.pastDue - a.pastDue )
         })
       })
   );
@@ -114,21 +113,29 @@ function App() {
 
   return (
     <div className="p-2">
-      <h1>Cadence Tracker</h1>
-      <button onClick={activityAdd}>Add Activity</button>
+      <Link to='/add' className="float-right font-medium bg-blue-400 p-2 text-white rounded">New Activity</Link>
+      <h1 className="text-4xl font-bold">Cadence</h1>
+      {/* <button onClick={activityAdd}>Add Activity</button> */}
+      {/* <button onClick={}>Add Activity</button> */}
+      <div className="my-2">
+      </div>
       <ul>
       {activities?.map(activity => activity).map( (activity, index) => (
-        <li key={index}>
-          {activity.name},
-          {activity.cadence}d,
-          {/* {activity.lastEvent ? timeElapsed(activity.lastEvent) : "Never"}, */}
-          {activity.pastDue && activity.pastDue || "Never"},
-          {activity.pastDue && formatXdXh(activity.pastDue) || "Never"},
-          <button onClick={() => activityDone(activity.id)}>Done</button>
+        <li key={index} className="border rounded my-4 p-4">
+          <button className="float-right bg-blue-400 text-white px-2 rounded" onClick={() => activityDone(activity.id)}>Done</button>
+          <div>
+            <Link className="text-blue-500 font-bold" to={`/manage/${activity.id}`}>
+             {activity.name}
+            </Link>
+          </div>
+          <div className="text-sm text-gray-500">
+            <span className="float-right">Due: {activity.pastDue ? formatXdXh(activity.pastDue) : "Eventually"}</span>
+            <span>Cadence: {activity.cadence}d</span>
+          </div>
         </li>
       ))}
       </ul>
-      <pre> { JSON.stringify(activities, null, 2) } </pre>
+      {/* <pre> { JSON.stringify(activities, null, 2) } </pre> */}
     </div>
     // <div className="p-2">
     //   <div className="bg-white rounded-lg shadow">
