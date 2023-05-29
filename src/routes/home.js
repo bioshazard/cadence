@@ -112,11 +112,7 @@ function App() {
   if (!activities) return null; // Still loading.
 
   return (
-    <div className="p-2">
-      <Link to='/add' className="float-right font-medium bg-blue-400 p-2 text-white rounded">New Activity</Link>
-      <h1 className="text-4xl font-bold">Cadence</h1>
-      {/* <button onClick={activityAdd}>Add Activity</button> */}
-      {/* <button onClick={}>Add Activity</button> */}
+    <div className="">
       <div className="my-2">
       </div>
       <ul>
@@ -137,71 +133,6 @@ function App() {
       </ul>
       {/* <pre> { JSON.stringify(activities, null, 2) } </pre> */}
     </div>
-    // <div className="p-2">
-    //   <div className="bg-white rounded-lg shadow">
-    //     <div className="border-b border-gray-200 px-6 py-4">
-    //       <button
-    //         className="float-right block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-    //         onClick={addActivityTest}
-    //       >
-    //         Add Activity
-    //       </button>
-    //       <h3 className="text-lg leading-6 font-medium text-gray-900 py-2">
-    //         My Activities
-    //       </h3>
-    //       <div className="clear-both"></div>
-    //     </div>
-    //     <ul className="divide-y divide-gray-200">
-    //       {[...activityMapState.keys()].map((key, index) => {
-    //         const activityName = key;
-    //         const activityDetails = activityMapState.get(key);
-    //         return (
-    //           <li className="px-6 py-4" key={index}>
-    //             <div className="flex items-center">
-    //               <div className="shrink-0">
-    //                 <svg
-    //                   className="h-6 w-6 text-gray-400"
-    //                   xmlns="http://www.w3.org/2000/svg"
-    //                   fill="none"
-    //                   viewBox="0 0 24 24"
-    //                   stroke="currentColor"
-    //                   aria-hidden="true"
-    //                 >
-    //                   <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-    //                 </svg>
-    //               </div>
-    //               <div className="grow ml-3">
-    //                 <button
-    //                   className="float-right block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-    //                   onClick={() => activityDelete(key)}
-    //                 >
-    //                   Delete
-    //                 </button>
-    //                 <button
-    //                   className="float-right block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded"
-    //                   onClick={() => activityDone(key)}
-    //                 >
-    //                   Done
-    //                 </button>
-    //                 <p className="text-sm font-medium text-gray-900">
-    //                   <Link to={`manage/${activityName}`} >
-    //                     ({activityDetails.cadence}) {activityName}
-    //                   </Link>
-    //                 </p>
-    //                 <p className="text-sm text-gray-500">
-    //                   Last:{" "}
-    //                   {(activityDetails.last &&
-    //                     timeElapsed(activityDetails.last.timestamp)) ||
-    //                     "Never"}
-    //                 </p>
-    //               </div>
-    //             </div>
-    //           </li>
-    //         );
-    //       })}
-    //     </ul>
-    //   </div>
-    // </div>
   );
 }
 

@@ -40,26 +40,41 @@ function Manage() {
       })
     })
   }
+
+  const activityNameSubmit = (event) => {
+    event.preventDefault()
+    db.activities.update(activityId, {
+      name: event.target.name.value
+    })
+    event.target.name.blur()
+  }
   
   const lastEvent = getEvent(activity.lastEvent)
 
   return (
-    <div className="p-2">
+    <div className="">
       <h2 className="text-2xl">
-        <Link to="/">Cadence</Link> &gt; <Link to={`/manage/${activityId}`}>{activity.name}</Link>
+        {/* <Link to={`/manage/${activityId}`}>{activity.name}</Link> */}
+        <form onSubmit={activityNameSubmit}>
+          <input className="border p-2" name="name" defaultValue={activity.name} />
+        </form>
       </h2>
       <div>
         Last: {lastEvent && lastEvent.timestamp ||  "Not set"}
       </div>
       <h3 className="text-xl">Events</h3>
       <ul>
-      {events.map(event => (
-        <li key={event.id}>
-          <button onClick={() => deleteEvent(event.id)}>Delete</button> :: {event.timestamp}
-        </li>
-      ))}
+      {events.length > 0
+        ? events.map(event => (
+            <li key={event.id}>
+              <button onClick={() => deleteEvent(event.id)}>Delete</button> :: {event.timestamp}
+            </li>
+          ))
+        : "No events"
+      }
       </ul>
-      <button onClick={deleteActivity}>Delete Activity</button>
+      <h3 className="text-xl">Danger Zone</h3>
+      <button className="p-2 bg-red-700 text-white font-medium rounded" onClick={deleteActivity}>Delete Activity</button>
     </div>
   )
 }

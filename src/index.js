@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Children } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import Home from "./routes/home";
 import Add from './routes/add';
 import Manage from './routes/manage';
+import App from './App'
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 
@@ -21,17 +22,34 @@ if (window.location.search) {
 
 const router = createRouter([
   {
-    path: "/",
-    element: <Home />,
+    path: "/", element: <App />,
+    "children": [
+      {
+        index: true,
+        element: <Home />
+      },
+      {
+        path: "add",
+        element: <Add />
+      },
+      {
+        path: "manage/:activityId",
+        element: <Manage />
+      },
+    ]
   },
-  {
-    path: "/add",
-    element: <Add />,
-  },
-  {
-    path: "manage/:activityId",
-    element: <Manage />,
-  }
+  // {
+  //   path: "/home",
+  //   element: <Home />,
+  // },
+  // {
+  //   path: "/add",
+  //   element: <Add />,
+  // },
+  // {
+  //   path: "manage/:activityId",
+  //   element: <Manage />,
+  // }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
