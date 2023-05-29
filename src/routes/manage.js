@@ -44,9 +44,11 @@ function Manage() {
   const activityNameSubmit = (event) => {
     event.preventDefault()
     db.activities.update(activityId, {
-      name: event.target.name.value
+      name: event.target.name.value,
+      cadence: event.target.cadence.value,
     })
     event.target.name.blur()
+    document.activeElement.blur()
   }
   
   const lastEvent = getEvent(activity.lastEvent)
@@ -56,7 +58,17 @@ function Manage() {
       <h2 className="text-2xl">
         {/* <Link to={`/manage/${activityId}`}>{activity.name}</Link> */}
         <form onSubmit={activityNameSubmit}>
-          <input className="border p-2" name="name" defaultValue={activity.name} />
+          <ul>
+            <li>
+              <input className="border p-2" name="name" defaultValue={activity.name} />
+            </li>
+            <li>
+              <input className="border p-2" name="cadence" defaultValue={activity.cadence} />
+            </li>
+            <li>
+              <button className="p-2 bg-green-500 text-white font-medium rounded">Update</button>
+            </li>
+          </ul>
         </form>
       </h2>
       <div>
